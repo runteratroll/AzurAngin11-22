@@ -8,7 +8,7 @@ public class StarterAssetsInputs : MonoBehaviour
     [Header("Character Input Values")]
     public Vector2 move;
     public Vector2 look;
-    public bool jump;
+
     public bool sprint;
     public bool aim;
     public bool shoot;
@@ -38,10 +38,6 @@ public class StarterAssetsInputs : MonoBehaviour
         }
     }
 
-    public void OnJump(InputValue value)
-    {
-        JumpInput(value.isPressed);
-    }
 
     public void OnSprint(InputValue value)
     {
@@ -80,10 +76,6 @@ public class StarterAssetsInputs : MonoBehaviour
         look = newLookDirection;
     }
 
-    public void JumpInput(bool newJumpState)
-    {
-        jump = newJumpState;
-    }
 
     public void SprintInput(bool newSprintState)
     {

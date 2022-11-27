@@ -33,7 +33,8 @@ public abstract class AtkBehaviour : MonoBehaviour
 
     // Update is called once per frame
     protected void Update()
-    { 
+    {
+        atkCoolTime = Random.Range(3f,  5f);
         if (nowAtkCoolTime < atkCoolTime)
         {    
             nowAtkCoolTime += Time.deltaTime;

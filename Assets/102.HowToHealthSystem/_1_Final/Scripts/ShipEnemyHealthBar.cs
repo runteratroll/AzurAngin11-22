@@ -28,10 +28,7 @@ public class ShipEnemyHealthBar : MonoBehaviour
     //자기 헬스시스템에서, 피가 깍일때 이벤트를 소환하니까 
 
     //등록시켜줌 
-    private void LateUpdate()
-    {
-        //UpdateHealthBar();
-    }
+    
     public void UpdateHealthBar()
     {
 

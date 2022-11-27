@@ -22,7 +22,7 @@ public class CollisionProjectileAtk : MonoBehaviour
     public GameObject projectileParents;
 
     //발사체의 대상의 초기위치를 잡기 위해 캐싱 
-    [HideInInspector]
+
     public GameObject target;
 
     //발사체 초기화 
@@ -76,7 +76,7 @@ public class CollisionProjectileAtk : MonoBehaviour
         if (target != null)
         {
             Vector3 vecProjectile = target.transform.position; 
-            vecProjectile.y += 1.5f;
+            vecProjectile.y += 0.7f;
             transform.LookAt(vecProjectile);
         }
     }
@@ -142,6 +142,7 @@ public class CollisionProjectileAtk : MonoBehaviour
         {
             Debug.Log("히히 데미지");
             iDmgAble.setDmg(damage, null); //atk 데미지 할 필요없지?
+            DamagePopup.Create(other.transform.position, damage, false);
             //그러네 플레이어는 MonsterFsm에 attackBehaviour가 없었잖아 그러니 그렇지 0이니까 안바뀐거였어
         }
          

@@ -22,11 +22,14 @@ public class ThirdPersonShooterController : MonoBehaviour {
     private StarterAssetsInputs starterAssetsInputs;
     private Animator animator;
 
+    private PlayerRoot playerRoot;
+
     public Recoil recoil;
 
 
     private void Awake() {
-        thirdPersonController = GetComponent<ThirdPersonController>();
+        //thirdPersonController = GetComponent<ThirdPersonController>();
+        playerRoot = GetComponentInChildren<PlayerRoot>();
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         animator = GetComponent<Animator>();
         //recoil = transform.Find("CameraRot/CameraRecoil").GetComponent<Recoil>();
@@ -39,29 +42,29 @@ public class ThirdPersonShooterController : MonoBehaviour {
         Ray ray = Camera.main.ScreenPointToRay(screenCenterPoint);
 
         Transform hitTransform = null;
-        if (Physics.Raycast(ray, out RaycastHit raycastHit, 999f, aimColliderLayerMask)) {
+        if (Physics.Raycast(ray, out RaycastHit raycastHit, Mathf.Infinity, aimColliderLayerMask)) {
             debugTransform.position = raycastHit.point;
             mouseWorldPosition = raycastHit.point;
             hitTransform = raycastHit.transform;
         }
 
-        if (starterAssetsInputs.aim) {
-            aimVirtualCamera.gameObject.SetActive(true);
-            thirdPersonController.SetSensitivity(aimSensitivity);
-            thirdPersonController.SetRotateOnMove(false);
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
+        //if (starterAssetsInputs.aim) {
+        //    aimVirtualCamera.gameObject.SetActive(true);
+           
 
-            Vector3 worldAimTarget = mouseWorldPosition;
-            worldAimTarget.y = transform.position.y;
-            Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+        //    animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 1f, Time.deltaTime * 13f));
 
-            transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
-        } else {
-            aimVirtualCamera.gameObject.SetActive(false);
-            thirdPersonController.SetSensitivity(normalSensitivity);
-            thirdPersonController.SetRotateOnMove(true);
-            animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
-        }
+        //    Vector3 worldAimTarget = mouseWorldPosition;
+        //    worldAimTarget.y = transform.position.y;
+        //    Vector3 aimDirection = (worldAimTarget - transform.position).normalized;
+
+        //    transform.forward = Vector3.Lerp(transform.forward, aimDirection, Time.deltaTime * 20f);
+        //} else {
+        //    aimVirtualCamera.gameObject.SetActive(false);
+        //    thirdPersonController.SetSensitivity(normalSensitivity);
+        //    thirdPersonController.SetRotateOnMove(true);
+        //    animator.SetLayerWeight(1, Mathf.Lerp(animator.GetLayerWeight(1), 0f, Time.deltaTime * 13f));
+        //}
 
 
         if (starterAssetsInputs.shoot) {
@@ -79,19 +82,9 @@ public class ThirdPersonShooterController : MonoBehaviour {
             }
             //*/
             //*
-            // Projectile Shoot
-
-            recoilSnake.ScreenShake(ray.direction);
 
             Vector3 aimDir = (mouseWorldPosition - spawnBulletPosition.position).normalized;
-            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));
-            //*/
-
-            if(recoil != null)
-            {
-                recoil.ShootRecoil(); //ÃÑÀ» ½ð´ÙÀ½ 
-            }
-         
+            Instantiate(pfBulletProjectile, spawnBulletPosition.position, Quaternion.LookRotation(aimDir, Vector3.up));    
             starterAssetsInputs.shoot = false;
         }
 

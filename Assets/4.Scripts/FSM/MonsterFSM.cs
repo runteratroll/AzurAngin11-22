@@ -12,6 +12,8 @@ public class MonsterFSM : MonoBehaviour
     protected Animator animator;
 
     protected FieldOfView fov;
+
+
     public Transform target => fov?.FirstTarget;
       
     protected virtual void Start()
@@ -23,6 +25,8 @@ public class MonsterFSM : MonoBehaviour
 
 
         fov = GetComponent<FieldOfView>();
+
+        
     }
 
     protected virtual void Update()
@@ -32,7 +36,7 @@ public class MonsterFSM : MonoBehaviour
 
     public virtual Transform SearchMonster()
     {
-        return target;
+        return target; //Å¸°Ù 
     }
 
     public float atkRange;

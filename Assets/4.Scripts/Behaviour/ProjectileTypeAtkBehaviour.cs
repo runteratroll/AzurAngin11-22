@@ -6,10 +6,10 @@ public class ProjectileTypeAtkBehaviour : AtkBehaviour
 {
 
 
-
+  
     public override void callAtkMotion(GameObject target = null, Transform posAtkStart = null)
     {
-
+   
 
         if (target == null && posAtkStart != null)
         {

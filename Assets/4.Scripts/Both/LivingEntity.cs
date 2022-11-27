@@ -6,21 +6,21 @@ public class LivingEntity : MonoBehaviour, IDmgAble
 {
     
     [SerializeField] protected int maxHealth;
-    public HealthBar healthBar;
     
-    HealthSystem healthSystem;
+    
+    //HealthSystem healthSystem;
+    [SerializeField]
     protected int currentHealth;
     protected bool dead;
 
     public bool getFlagLive => currentHealth > 0;
-
+    public HpBar hpBar;
 
 
     protected virtual void Start()
     {
-        currentHealth = maxHealth;
-        healthSystem = new HealthSystem(maxHealth); //  전달받을께 아니니, 내부에서 바로생성
-        healthBar.Setup(healthSystem); //HealthSystem의 내부HP를 전달받기위해 Setup을 보내준다.  
+        currentHealth = (int)hpBar.maxHp;
+        
     }
 
 
@@ -41,7 +41,10 @@ public class LivingEntity : MonoBehaviour, IDmgAble
 
         //안 죽었다면, 현재 hp에서 데미지를 차감 해준다 
         currentHealth -= dmg;
-        healthSystem.Damage(dmg);
+        hpBar.hp -= (float)dmg; //내가 참조하고 있는 HpBar에 Hp를 줄인다. 
+        //healthSystem.Damage(dmg);
+
+
 
         //if (atkEffectPrefab)
         //{

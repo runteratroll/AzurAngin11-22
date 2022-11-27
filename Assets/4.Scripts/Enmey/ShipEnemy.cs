@@ -57,7 +57,7 @@ public class ShipEnemy : MonsterFSM_Behaviour
     public float GetBatteryCurrentHp() //현재 이걸 받아가지고 업데이트 헬스바 하기
     {
 
-        Debug.Log("GetBatter가 실행되니?");
+        //Debug.Log("GetBatter가 실행되니?");
 
         //근데이거 왜케늦냐
         int batterysHp = 0;

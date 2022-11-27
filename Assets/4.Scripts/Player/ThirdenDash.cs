@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using StarterAssets;
 public class ThirdenDash : MonoBehaviour
 {
-    ThirdPersonController moveScript;
+    PlayerRoot playerRoot;
     public float dashSpeed;
     public float dashTime;
     public float dashCoolTime;
@@ -16,7 +16,7 @@ public class ThirdenDash : MonoBehaviour
     void Start()
     {
         startCoolTime = Time.time;
-        moveScript = GetComponent<ThirdPersonController>();
+        playerRoot = GetComponentInChildren<PlayerRoot>();
 
         _input = GetComponent<StarterAssetsInputs>();
     }
@@ -40,9 +40,9 @@ public class ThirdenDash : MonoBehaviour
         {
 
             Debug.Log("대쉬이동");
-            moveScript._controller.Move(moveScript.inputDirection * dashSpeed * Time.deltaTime);
+            playerRoot.transform.position += playerRoot.move * dashSpeed * Time.deltaTime;
 
-            yield return null;
+             yield return null;
         }
         _input.dash = false;
     }
