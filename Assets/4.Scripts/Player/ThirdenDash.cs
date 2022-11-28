@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 using StarterAssets;
 public class ThirdenDash : MonoBehaviour
 {
-    PlayerRoot playerRoot;
+    public PlayerRoot playerRoot;
     public float dashSpeed;
     public float dashTime;
     public float dashCoolTime;
@@ -16,11 +16,13 @@ public class ThirdenDash : MonoBehaviour
     void Start()
     {
         startCoolTime = Time.time;
-        playerRoot = GetComponentInChildren<PlayerRoot>();
+       
 
         _input = GetComponent<StarterAssetsInputs>();
+        rigid = GetComponent<Rigidbody>();
     }
 
+    Rigidbody rigid;
     // Update is called once per frame
     private void FixedUpdate()
     {
@@ -36,12 +38,13 @@ public class ThirdenDash : MonoBehaviour
     {
         float startTime = Time.time;
 
-        while(Time.time < startTime + dashTime)
+       // rigid.AddForce(playerRoot.move * dashSpeed, ForceMode.Impulse);
+        while (Time.time < startTime + dashTime)
         {
 
             Debug.Log("대쉬이동");
-            playerRoot.transform.position += playerRoot.move * dashSpeed * Time.deltaTime;
-
+            playerRoot.camPos.transform.position += playerRoot.move * dashSpeed * Time.deltaTime;
+        
              yield return null;
         }
         _input.dash = false;

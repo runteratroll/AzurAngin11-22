@@ -24,8 +24,6 @@ public class ThirdPersonShooterController : MonoBehaviour {
 
     private PlayerRoot playerRoot;
 
-    public Recoil recoil;
-
 
     private void Awake() {
         //thirdPersonController = GetComponent<ThirdPersonController>();

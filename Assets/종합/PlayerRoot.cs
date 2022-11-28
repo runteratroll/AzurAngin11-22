@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerRoot : MonoBehaviour
 {
     public float turnSpeed = 4.0f; // 마우스 회전 속도
     public float moveSpeed = 4.0f; // 이동 속도
+    public float sprintSpeed = 7.0f;
 
     private float yRotateSize;
     public float yRotate;
@@ -14,11 +13,11 @@ public class PlayerRoot : MonoBehaviour
 
     public Vector3 move;
     public GameObject camPos;
-    StarterAssetsInputs _input;
+    public StarterAssetsInputs _input;
 
     private void Awake()
     {
-        _input = GetComponent<StarterAssetsInputs>();
+        //_input = GetComponent<StarterAssetsInputs>();
     }
 
     void Update()
@@ -37,14 +36,25 @@ public class PlayerRoot : MonoBehaviour
 
 
 
+        if(!_input.dash)
+        {
 
+            if (_input.sprint)
+            {
+                camPos.transform.position += move * sprintSpeed * Time.deltaTime;
+                transform.position = camPos.transform.position;
+            }
+            else
+            {
+                camPos.transform.position += move * moveSpeed * Time.deltaTime;
+                transform.position = camPos.transform.position;
+            }
+        }
+        
 
-       
-        camPos.transform.position += move * moveSpeed * Time.deltaTime;
+     
 
-        //무브함수로 하자
-
-        transform.position = camPos.transform.position;
+     
     }
 
 

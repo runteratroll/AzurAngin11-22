@@ -140,7 +140,7 @@ public class CollisionProjectileAtk : MonoBehaviour
  
         if (iDmgAble != null)
         {
-            Debug.Log("히히 데미지");
+            //Debug.Log("히히 데미지");
             iDmgAble.setDmg(damage, null); //atk 데미지 할 필요없지?
             DamagePopup.Create(other.transform.position, damage, false);
             //그러네 플레이어는 MonsterFsm에 attackBehaviour가 없었잖아 그러니 그렇지 0이니까 안바뀐거였어

@@ -36,12 +36,12 @@ public class FieldOfView : MonoBehaviour
             Vector3 LookAtTarget = (target.position - transform.position).normalized; //back하는 법은?
             //target이 없어서 그런걸지도
 
-            Debug.Log("LookAtTarget 은?" + LookAtTarget);
+            //Debug.Log("LookAtTarget 은?" + LookAtTarget);
 
             if (Vector3.Angle(transform.forward   , LookAtTarget) < eyeAngle / 2) //뒤쪽을 기준으로 
             {   
                 float nowFirstDistanceTarget = Vector3.Distance(transform.position, target.position );
-                Debug.Log("noeDistanceTagert" + nowFirstDistanceTarget);
+                //Debug.Log("noeDistanceTagert" + nowFirstDistanceTarget);
 
                 if (!Physics.Raycast(transform.position, LookAtTarget, nowFirstDistanceTarget * 2, blockLayerMask))
                 {

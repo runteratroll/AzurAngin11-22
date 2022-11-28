@@ -46,6 +46,7 @@ public class StarterAssetsInputs : MonoBehaviour
 
     public void OnAim(InputValue value)
     {
+        Debug.Log("에임 되는거 맞냐?");
         AimInput(value.isPressed);
     }
 
